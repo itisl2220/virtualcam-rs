@@ -1,0 +1,14 @@
+{
+    "cSpell.words": [
+        "CAPNUM",
+        "fourcc",
+        "mirrormode",
+        "Mutx",
+        "READWRITE",
+        "resizemode"
+    ],
+    "rust-analyzer.linkedProjects": [
+        ".\\examples\\mp4_to_vcam\\Cargo.toml",
+        ".\\examples\\mp4_to_vcam\\Cargo.toml"
+    ]
+}
