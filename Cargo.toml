@@ -2,6 +2,8 @@
 name = "virtualcam-rs"
 version = "0.1.0"
 edition = "2021"
+authors = ["ITisl <itisl@qq.com>"]
+git = "https://github.com/itisl2220/virtualcam-rs.git"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
