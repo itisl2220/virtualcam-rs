@@ -6,6 +6,7 @@ authors = ["ITisl <itisl@qq.com>"]
 git = "https://github.com/itisl2220/virtualcam-rs.git"
 description = "A virtual camera for Windows"
 license = "MIT"
+email = "itisl@qq.com"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
