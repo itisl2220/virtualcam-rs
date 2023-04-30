@@ -188,7 +188,7 @@ impl SharedImageMemory {
                         unsafe { OpenMutexA(SYNCHRONIZE, 0, cs_name_mutex.as_ptr() as *const i8) };
                 }
             }
-            println!("h_mutex: {:?}", self.h_mutex);
+            // println!("h_mutex: {:?}", self.h_mutex);
             if self.h_mutex.is_null() {
                 return false;
             }
@@ -230,7 +230,7 @@ impl SharedImageMemory {
                     };
                 }
             }
-            println!("h_want_frame_event: {:?}", self.h_want_frame_event);
+            // println!("h_want_frame_event: {:?}", self.h_want_frame_event);
             if self.h_want_frame_event.is_null() {
                 return false;
             }
@@ -257,7 +257,7 @@ impl SharedImageMemory {
                     };
                 }
             }
-            println!("h_send_frame_event: {:?}", self.h_send_frame_event);
+            // println!("h_send_frame_event: {:?}", self.h_send_frame_event);
             if self.h_send_frame_event.is_null() {
                 return false;
             }
@@ -289,7 +289,7 @@ impl SharedImageMemory {
                     };
                 }
             }
-            println!("h_shared_file: {:?}", self.h_shared_file);
+            // println!("h_shared_file: {:?}", self.h_shared_file);
 
             if self.h_shared_file.is_null() {
                 return false;
@@ -299,7 +299,7 @@ impl SharedImageMemory {
             MapViewOfFile(self.h_shared_file, FILE_MAP_WRITE, 0, 0, 0 as usize)
                 as *mut SharedMemHeader
         };
-        println!("m_p_shared_buf: {:?}", self.m_p_shared_buf);
+        // println!("m_p_shared_buf: {:?}", self.m_p_shared_buf);
         if self.m_p_shared_buf.is_null() {
             return false;
         }

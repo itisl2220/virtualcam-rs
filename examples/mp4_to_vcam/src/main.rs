@@ -1,11 +1,31 @@
 extern crate ffmpeg_next as ffmpeg;
+
+use std::time::Duration;
+
 use ffmpeg::format::{input, Pixel};
 use ffmpeg::media::Type;
 use ffmpeg::software::scaling::{context::Context, flag::Flags};
+use ffmpeg::time::sleep;
 use ffmpeg::util::frame::video::Video;
 use virtualcam_rs::Camera;
-fn main() -> Result<(), ffmpeg_next::Error> {
-    let mut vcam = Camera::new(3840, 2160, "Unity Video Capture");
+
+#[derive(Debug)]
+struct Error;
+
+impl From<virtualcam_rs::Error> for Error {
+    fn from(e: virtualcam_rs::Error) -> Self {
+        e.into()
+    }
+}
+
+impl From<ffmpeg::Error> for Error {
+    fn from(e: ffmpeg::Error) -> Self {
+        e.into()
+    }
+}
+
+fn main() -> Result<(), Error> {
+    let mut vcam = Camera::new(1920, 1080, "Unity Video Capture")?;
 
     ffmpeg::init().unwrap();
     loop {
@@ -34,8 +54,8 @@ fn main() -> Result<(), ffmpeg_next::Error> {
                 decoder.width(),
                 decoder.height(),
                 Pixel::RGBA,
-                3840,
-                2160,
+                1920,
+                1080,
                 Flags::BILINEAR,
             )?;
 
@@ -50,7 +70,14 @@ fn main() -> Result<(), ffmpeg_next::Error> {
                         }
                         scaler.run(&decoded, &mut rgb_frame)?;
                         let rgb_u8 = rgb_frame.data(0);
-                        vcam.send(rgb_u8.to_vec());
+                        match vcam.send(rgb_u8.to_vec()) {
+                            Ok(_) => {}
+                            Err(e) => {
+                                println!("send error: {:?}", e);
+                            }
+                        };
+
+                        sleep(25000)?;
                     }
                 }
             }
